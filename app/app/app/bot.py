@@ -26,7 +26,8 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    raw_token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+token = "".join(c for c in raw_token if c.isascii() and c.isprintable())
 
     if not token:
         raise ValueError("TELEGRAM_BOT_TOKEN не установлен")
