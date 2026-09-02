@@ -20,9 +20,11 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         result = generate_text(text)
         await update.message.reply_text(result)
     except Exception as e:
-        await update.message.reply_text(
-            f"Произошла ошибка: {e}"
-        )
+    import traceback
+    traceback.print_exc()
+    await update.message.reply_text(
+        "Произошла ошибка при обращении к AI. Попробуйте ещё раз."
+    )
 
 
 def main():
