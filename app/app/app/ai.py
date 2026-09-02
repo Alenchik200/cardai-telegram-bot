@@ -8,7 +8,11 @@ def generate_text(text: str) -> str:
     if not api_key:
         raise RuntimeError("OPENAI_API_KEY is missing")
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(
+        api_key=api_key,
+        timeout=60.0,
+        max_retries=5,
+    )
 
     response = client.responses.create(
         model="gpt-5.6-luna",
